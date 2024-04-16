@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+	<div x-data="user_data">
+		
+		<template x-for="user in user_details">
+			<div>
+				<h1 x-text="user.name"></h1>
+				<h2 x-text="user.email"></h2>
+				<span x-text="user.address"></span>
+			</div>
+		</template>
+	</div>
+{% endblock %}
+
+{% block scripts %}
+	<script>
+		document.addEventListener("alpine:init", function() {
+			Alpine.data("user_data", () => ({
+				user_details: JSON.parse('{{ user_details | tojson }}'),
+			}))
+		})
+	</script>
+{% endblock %}

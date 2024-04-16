@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+	<div x-data="user_data">
+		<h1 x-text="message"></h1>
+	</div>
+{% endblock %}
+
+{% block scripts %}
+	<script>
+		document.addEventListener("alpine:init", function() {
+			Alpine.data("user_data", () => ({
+				message: "Hello World!",
+			}))
+		})
+	</script>
+{% endblock %}
